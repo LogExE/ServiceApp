@@ -2,18 +2,17 @@ using Microsoft.Data.SqlClient;
 
 namespace ServiceApp
 {
-    public partial class Form1 : Form
+    public partial class LoginForm : Form
     {
         SqlConnection con;
-        public Form1()
+        public LoginForm(SqlConnection con)
         {
+            this.con = con;
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            con = new SqlConnection("Server=.\\SQLEXPRESS;Database=Servicc;Trusted_Connection=True;TrustServerCertificate=True");
-            con.Open();
         }
 
         private void enterButton_Click(object sender, EventArgs e)
@@ -21,10 +20,11 @@ namespace ServiceApp
             string login = loginText.Text;
             string pwd = pwdText.Text;
 
-            var cmd = new SqlCommand();
-            //TODO: maybe fix inject
-            cmd.CommandText = "SELECT Passwd FROM AppUser WHERE Login = '" + login + "'";
-            cmd.Connection = con;
+            var cmd = new SqlCommand
+            {
+                CommandText = $"SELECT Passwd FROM AppUser WHERE Login = '{login}'",
+                Connection = con
+            };
             cmd.ExecuteNonQuery();
             object ret = cmd.ExecuteScalar();
 
@@ -40,13 +40,15 @@ namespace ServiceApp
                 return;
             }
 
-            cmd = new SqlCommand();
-            cmd.CommandText = "SELECT ID FROM AppUser WHERE Login = '" + login + "'";
-            cmd.Connection = con;
+            cmd = new SqlCommand
+            {
+                CommandText = $"SELECT ID FROM AppUser WHERE Login = '{login}'",
+                Connection = con
+            };
             cmd.ExecuteNonQuery();
             int id = (int)cmd.ExecuteScalar();
 
-            var frm = new Form2(con, id)
+            var frm = new InterfaceForm(con, id == 1)
             {
                 Location = this.Location,
                 StartPosition = FormStartPosition.Manual
@@ -54,11 +56,6 @@ namespace ServiceApp
             frm.FormClosing += delegate { this.Show(); };
             frm.Show();
             this.Hide();
-        }
-
-        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            con.Close();
         }
     }
 }

@@ -11,24 +11,30 @@ using System.Windows.Forms;
 
 namespace ServiceApp
 {
-    public partial class Form2 : Form
+    public partial class InterfaceForm : Form
     {
-        int usr_id;
+        bool admin;
         SqlConnection con;
         DataTable dt;
-        public Form2(SqlConnection con, int id)
+        public InterfaceForm(SqlConnection con, bool admin)
         {
             this.con = con;
-            this.usr_id = id;
+            this.admin = admin;
             InitializeComponent();
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            roleLabel.Text = "Вы зашли за " + (admin ? "администратора" : "приемщика заказов");
+
             dt = new DataTable();
             mainDataGrid.DataSource = dt;
             mainDataGrid.EndEdit();
+            Test();
+        }
 
+        private void Test()
+        {
             var cmd = new SqlCommand();
             cmd.CommandText = "SELECT * FROM Client";
             cmd.Connection = con;
