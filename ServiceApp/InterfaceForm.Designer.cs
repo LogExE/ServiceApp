@@ -33,7 +33,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tableComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.mainDataGrid)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -102,7 +102,7 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.comboBox1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.tableComboBox, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -112,20 +112,15 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(159, 157);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // comboBox1
+            // tableComboBox
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Клиент",
-            "Устройство",
-            "Вид обслуживания",
-            "Работник",
-            "Подразделение"});
-            this.comboBox1.Location = new System.Drawing.Point(3, 3);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(153, 23);
-            this.comboBox1.TabIndex = 0;
+            this.tableComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableComboBox.FormattingEnabled = true;
+            this.tableComboBox.Location = new System.Drawing.Point(3, 3);
+            this.tableComboBox.Name = "tableComboBox";
+            this.tableComboBox.Size = new System.Drawing.Size(153, 23);
+            this.tableComboBox.TabIndex = 0;
+            this.tableComboBox.SelectedIndexChanged += new System.EventHandler(this.tableComboBox_SelectedIndexChanged);
             // 
             // InterfaceForm
             // 
@@ -152,6 +147,6 @@
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
         private TableLayoutPanel tableLayoutPanel3;
-        private ComboBox comboBox1;
+        private ComboBox tableComboBox;
     }
 }

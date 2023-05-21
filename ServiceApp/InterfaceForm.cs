@@ -15,7 +15,16 @@ namespace ServiceApp
     {
         bool admin;
         SqlConnection con;
-        DataTable dt;
+
+        Dictionary<string, string> nameToTable = new Dictionary<string, string>()
+        {
+            {"Клиент", "Client"},
+            {"Устройство", "Device"},
+            {"Вид обслуживания", "Task"},
+            {"Работник", "Employee"},
+            {"Подразделение", "Division"}
+        };
+
         public InterfaceForm(SqlConnection con, bool admin)
         {
             this.con = con;
@@ -27,20 +36,29 @@ namespace ServiceApp
         {
             roleLabel.Text = "Вы зашли за " + (admin ? "администратора" : "приемщика заказов");
 
-            dt = new DataTable();
-            mainDataGrid.DataSource = dt;
-            mainDataGrid.EndEdit();
-            Test();
+            tableComboBox.DataSource = nameToTable.Keys.ToList();
+            tableComboBox.SelectedIndex = 0;
         }
 
-        private void Test()
+        private void AllRowsFromTableIntoGrid(string name)
         {
-            var cmd = new SqlCommand();
-            cmd.CommandText = "SELECT * FROM Client";
-            cmd.Connection = con;
+            var cmd = new SqlCommand
+            {
+                CommandText = $"SELECT * FROM {name}",
+                Connection = con
+            };
             cmd.ExecuteNonQuery();
+            var dt = new DataTable();
             var adapter = new SqlDataAdapter(cmd);
+            mainDataGrid.DataSource = dt;
             adapter.Fill(dt);
+            mainDataGrid.EndEdit();
+        }
+
+        private void tableComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string text = (string)((ComboBox)sender).SelectedItem;
+            AllRowsFromTableIntoGrid(nameToTable[text]);
         }
     }
 }
