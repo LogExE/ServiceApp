@@ -59,13 +59,25 @@ namespace ServiceApp
         {
             using var con = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
             con.Open();
+
             var cmd = con.CreateCommand();
             cmd.CommandText = $"SELECT * FROM {table}";
             cmd.ExecuteNonQuery();
+
             var dt = new DataTable();
             var adapter = new SqlDataAdapter(cmd);
             mainDataGrid.DataSource = dt;
             adapter.Fill(dt);
+
+            /*
+            var deleteButton = new DataGridViewButtonColumn();
+            deleteButton.Name = "dataGridViewDeleteButton";
+            deleteButton.HeaderText = "Удалить";
+            deleteButton.Text = "X";
+            deleteButton.UseColumnTextForButtonValue = true;
+            mainDataGrid.Columns.Add(deleteButton);
+            */
+
             mainDataGrid.EndEdit();
         }
 
@@ -97,7 +109,7 @@ namespace ServiceApp
             if (rows != 1)
                 return;
 
-            int idToUpdate = (int)mainDataGrid.SelectedRows[0].Cells[0].Value;
+            int idToUpdate = (int)mainDataGrid.SelectedRows[0].Cells["ID"].Value;
             var form = GimmeTableForm(table, idToUpdate);
             var res = form.ShowDialog();
             if (res == DialogResult.OK)
@@ -111,7 +123,7 @@ namespace ServiceApp
             if (rows != 1)
                 return;
 
-            int idToDelete = (int)mainDataGrid.SelectedRows[0].Cells[0].Value;
+            int idToDelete = (int)mainDataGrid.SelectedRows[0].Cells["ID"].Value;
             using var con = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
             con.Open();
             var cmd = con.CreateCommand();
