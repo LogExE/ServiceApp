@@ -1,13 +1,12 @@
 using Microsoft.Data.SqlClient;
+using System.Configuration;
 
 namespace ServiceApp
 {
     public partial class LoginForm : Form
     {
-        SqlConnection con;
-        public LoginForm(SqlConnection con)
+        public LoginForm()
         {
-            this.con = con;
             InitializeComponent();
         }
 
@@ -20,11 +19,10 @@ namespace ServiceApp
             string login = loginText.Text;
             string pwd = pwdText.Text;
 
-            var cmd = new SqlCommand
-            {
-                CommandText = $"SELECT Passwd FROM AppUser WHERE Login = '{login}'",
-                Connection = con
-            };
+            using var con = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
+            con.Open();
+            var cmd = con.CreateCommand();
+            cmd.CommandText = $"SELECT Passwd FROM AppUser WHERE Login = '{login}'";
             cmd.ExecuteNonQuery();
             object ret = cmd.ExecuteScalar();
 
@@ -33,22 +31,18 @@ namespace ServiceApp
                 MessageBox.Show("Такого пользователя нет!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
-            if (pwd.CompareTo(ret) != 0) 
+
+            if (pwd.CompareTo(ret) != 0)
             {
                 MessageBox.Show("Пароль неверный!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            cmd = new SqlCommand
-            {
-                CommandText = $"SELECT ID FROM AppUser WHERE Login = '{login}'",
-                Connection = con
-            };
+            cmd.CommandText = $"SELECT IsAdmin FROM AppUser WHERE Login = '{login}'";
             cmd.ExecuteNonQuery();
-            int id = (int)cmd.ExecuteScalar();
-
-            var frm = new InterfaceForm(con, id == 1)
+            bool isAdmin = (bool)cmd.ExecuteScalar();
+            
+            var frm = new InterfaceForm(isAdmin)
             {
                 Location = this.Location,
                 StartPosition = FormStartPosition.Manual

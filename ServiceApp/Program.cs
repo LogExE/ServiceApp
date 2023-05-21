@@ -14,11 +14,7 @@ namespace ServiceApp
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            string connectionString = "Server=.\\SQLEXPRESS;Database=Servicc;Trusted_Connection=True;TrustServerCertificate=True";
-            var con = new SqlConnection(connectionString);
-            con.Open();
-            Application.Run(new LoginForm(con));
-            con.Close();
+            Application.Run(new LoginForm());
         }
     }
 }
