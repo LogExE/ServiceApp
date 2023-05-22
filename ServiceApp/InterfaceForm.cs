@@ -87,10 +87,10 @@ namespace ServiceApp
             AllRowsFromTableIntoGrid(nameToTable[text]);
         }
 
-        private Form GimmeTableForm(string name, int? id)
+        private Form GimmeTableForm(string name, Dictionary<string, object> fields)
         {
             var typ = Type.GetType(nameof(ServiceApp) + "." + name + "Form");
-            return Activator.CreateInstance(typ, new object[] { id } ) as Form;
+            return Activator.CreateInstance(typ, new object[] { fields } ) as Form;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -109,8 +109,11 @@ namespace ServiceApp
             if (rows != 1)
                 return;
 
-            int idToUpdate = (int)mainDataGrid.SelectedRows[0].Cells["ID"].Value;
-            var form = GimmeTableForm(table, idToUpdate);
+            Dictionary<string, object> fields = new Dictionary<string, object>();
+            foreach (DataGridViewCell cell in mainDataGrid.SelectedRows[0].Cells)
+                fields[mainDataGrid.Columns[cell.ColumnIndex].Name] = cell.Value;
+
+            var form = GimmeTableForm(table, fields);
             var res = form.ShowDialog();
             if (res == DialogResult.OK)
                 AllRowsFromTableIntoGrid(table);
@@ -130,6 +133,11 @@ namespace ServiceApp
             cmd.CommandText = $"DELETE FROM {table} WHERE ID = {idToDelete}";
             cmd.ExecuteNonQuery();
             AllRowsFromTableIntoGrid(table);
+        }
+
+        private void mainDataGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            
         }
     }
 }
