@@ -43,12 +43,15 @@
             taskPartsButton = new Button();
             reqByClButton = new Button();
             reqGenButton = new Button();
+            groupBox3 = new GroupBox();
+            mergeButton = new Button();
             ((System.ComponentModel.ISupportInitialize)mainDataGrid).BeginInit();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
+            groupBox3.SuspendLayout();
             SuspendLayout();
             // 
             // mainDataGrid
@@ -104,6 +107,7 @@
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 33.3333321F));
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 0);
             tableLayoutPanel2.Controls.Add(groupBox2, 1, 0);
+            tableLayoutPanel2.Controls.Add(groupBox3, 2, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
             tableLayoutPanel2.Location = new Point(3, 253);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -239,6 +243,27 @@
             reqGenButton.UseVisualStyleBackColor = true;
             reqGenButton.Click += reqGenButton_Click;
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(mergeButton);
+            groupBox3.Dock = DockStyle.Fill;
+            groupBox3.Location = new Point(439, 3);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(214, 216);
+            groupBox3.TabIndex = 2;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Процедуры";
+            // 
+            // mergeButton
+            // 
+            mergeButton.Location = new Point(6, 22);
+            mergeButton.Name = "mergeButton";
+            mergeButton.Size = new Size(204, 31);
+            mergeButton.TabIndex = 0;
+            mergeButton.Text = "Объединить заказы";
+            mergeButton.UseVisualStyleBackColor = true;
+            mergeButton.Click += mergeButton_Click;
+            // 
             // InterfaceForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -255,6 +280,7 @@
             tableLayoutPanel3.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -275,5 +301,7 @@
         private Button reqByClButton;
         private Button taskPartsButton;
         private Button edViewButton;
+        private GroupBox groupBox3;
+        private Button mergeButton;
     }
 }

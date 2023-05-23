@@ -10,6 +10,7 @@ namespace ServiceApp
     {
         bool admin;
         bool allowed = false;
+        string lastQuery = null;
 
         Dictionary<string, string> nameToTable = new Dictionary<string, string>()
         {
@@ -71,6 +72,7 @@ namespace ServiceApp
             adapter.Fill(dt);
 
             mainDataGrid.EndEdit();
+            lastQuery = query;
         }
 
         private string getTableComboTextSelection()
@@ -80,24 +82,15 @@ namespace ServiceApp
 
         private void tableComboBox_TextChanged(object sender, EventArgs e)
         {
-            if (!nameToTable.Keys.Contains(getTableComboTextSelection()))
+            string cursel = getTableComboTextSelection();
+            if (!nameToTable.ContainsKey(cursel) || !admin && !freeToWrite.Contains(cursel))
             {
                 addButton.Enabled = false;
                 updateButton.Enabled = false;
                 deleteButton.Enabled = false;
                 allowed = false;
-                return;
-            }
-
-            string text = getTableComboTextSelection();
-            AllRowsFromTableIntoGrid(nameToTable[text]);
-
-            if (!admin && !freeToWrite.Contains(text))
-            {
-                addButton.Enabled = false;
-                updateButton.Enabled = false;
-                deleteButton.Enabled = false;
-                allowed = false;
+                if (!nameToTable.ContainsKey(cursel))
+                    return;
             }
             else
             {
@@ -109,6 +102,7 @@ namespace ServiceApp
                     deleteButton.Enabled = true;
                 }
             }
+            AllRowsFromTableIntoGrid(nameToTable[cursel]);
         }
 
         private Form GimmeTableForm(string name, Dictionary<string, object> fields)
@@ -117,13 +111,18 @@ namespace ServiceApp
             return Activator.CreateInstance(typ, new object[] { fields }) as Form;
         }
 
+        private void RefreshGrid()
+        {
+            AllRowsFromQueryIntoGrid(lastQuery);
+        }
+
         private void addButton_Click(object sender, EventArgs e)
         {
             string table = nameToTable[getTableComboTextSelection()];
             var form = GimmeTableForm(table, null);
             var res = form.ShowDialog();
             if (res == DialogResult.OK)
-                AllRowsFromTableIntoGrid(table);
+                RefreshGrid();
         }
 
         private void updateButton_Click(object sender, EventArgs e)
@@ -137,7 +136,7 @@ namespace ServiceApp
             var form = GimmeTableForm(table, fields);
             var res = form.ShowDialog();
             if (res == DialogResult.OK)
-                AllRowsFromTableIntoGrid(table);
+                RefreshGrid();
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
@@ -157,7 +156,7 @@ namespace ServiceApp
             cmd.CommandText = $"DELETE FROM {table} WHERE {idCol} = {idToDelete}";
             Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
-            AllRowsFromTableIntoGrid(table);
+            RefreshGrid();
         }
 
         private void mainDataGrid_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
@@ -186,22 +185,30 @@ namespace ServiceApp
             tableComboBox.Text = "Задачи по заказу";
         }
 
-        private void reqGenButton_Click(object sender, EventArgs e)
+        private int? getIntFromMessageBox(string prompt)
         {
-            string resp = Interaction.InputBox("Введите номер заявки!");
+            string resp = Interaction.InputBox(prompt);
             if (resp == "")
-                return;
-            int id;
+                return null;
+            int ret;
             try
             {
-                id = int.Parse(resp);
+                ret = int.Parse(resp);
             }
             catch (FormatException)
             {
                 MessageBox.Show("Введено не число!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
+                return null;
             }
-            AllRowsFromQueryIntoGrid($"SELECT * FROM RequestForm WHERE ID = {id}");
+            return ret;
+        }
+
+        private void reqGenButton_Click(object sender, EventArgs e)
+        {
+            int? id = getIntFromMessageBox("Введите номер заявки!");
+            if (id == null)
+                return;
+            AllRowsFromQueryIntoGrid($"SELECT * FROM RequestForm WHERE RequestID = {id}");
             tableComboBox.Text = "Форма заявки";
         }
 
@@ -219,7 +226,30 @@ namespace ServiceApp
 
         private void edViewButton_Click(object sender, EventArgs e)
         {
+            AllRowsFromTableIntoGrid("EditableView");
+            tableComboBox.Text = "Заявки с запчастями";
+        }
 
+        private void mergeButton_Click(object sender, EventArgs e)
+        {
+            using var con = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
+            con.Open();
+
+            int? req1 = getIntFromMessageBox("Введите номер основного заказа");
+            if (req1 == null)
+                return;
+            int? req2 = getIntFromMessageBox("Введите номер заказа, который нужно объединить с основным");
+            if (req2 == null)
+                return;
+            var cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "merge_requests";
+            cmd.Parameters.Add(new SqlParameter("@req1", req1));
+            cmd.Parameters.Add(new SqlParameter("@req2", req2));
+            Debug.WriteLine(cmd.CommandText);
+            cmd.ExecuteNonQuery();
+            if (nameToTable[getTableComboTextSelection()] == "RequestOrderedTask")
+                RefreshGrid();
         }
     }
 }
