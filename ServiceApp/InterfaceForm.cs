@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -37,8 +38,9 @@ namespace ServiceApp
 
         HashSet<string> freeToWrite = new HashSet<string>()
         {
-            "Клиенты", "Клиенты : Устройства", 
-            "Задачи", "Задачи в работе", "Выполненные заказы", "Заказы : Задачи"
+            "Клиенты", "Клиенты : Устройства",
+            "Задачи", "Задачи в работе",
+            "Заказы", "Выполненные заказы", "Заказы : Задачи"
         };
 
         public InterfaceForm(bool admin)
@@ -62,6 +64,7 @@ namespace ServiceApp
 
             var cmd = con.CreateCommand();
             cmd.CommandText = $"SELECT * FROM {table}";
+            Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
 
             var dt = new DataTable();
@@ -85,6 +88,18 @@ namespace ServiceApp
         {
             string text = (string)((ComboBox)sender).SelectedItem;
             AllRowsFromTableIntoGrid(nameToTable[text]);
+            if (!admin && !freeToWrite.Contains(text))
+            {
+                addButton.Enabled = false;
+                updateButton.Enabled = false;
+                deleteButton.Enabled = false;
+            }
+            else
+            {
+                addButton.Enabled = true;
+                updateButton.Enabled = true;
+                deleteButton.Enabled = true;
+            }
         }
 
         private Form GimmeTableForm(string name, Dictionary<string, object> fields)
@@ -131,13 +146,9 @@ namespace ServiceApp
             con.Open();
             var cmd = con.CreateCommand();
             cmd.CommandText = $"DELETE FROM {table} WHERE ID = {idToDelete}";
+            Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
             AllRowsFromTableIntoGrid(table);
-        }
-
-        private void mainDataGrid_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            
         }
     }
 }

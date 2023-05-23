@@ -13,20 +13,22 @@ using System.Windows.Forms;
 
 namespace ServiceApp
 {
-    public partial class DeviceForm : Form
+    public partial class EmployeeForm : Form
     {
         Dictionary<string, object> fields;
-        public DeviceForm(Dictionary<string, object> fields)
+        public EmployeeForm(Dictionary<string, object> fields)
         {
             this.fields = fields;
             InitializeComponent();
         }
-        private void DeviceForm_Load(object sender, EventArgs e)
+
+        private void EmployeeForm_Load(object sender, EventArgs e)
         {
             if (fields != null)
             {
+                surnameText.Text = (string)fields["Surname"];
                 nameText.Text = (string)fields["Name"];
-                kindText.Text = (string)fields["Kind"];
+                patronymicText.Text = (string)fields["Patronymic"];
             }
         }
 
@@ -37,9 +39,9 @@ namespace ServiceApp
 
             SqlCommand cmd = con.CreateCommand();
             if (fields != null)
-                cmd.CommandText = $"UPDATE Device SET Name = N'{nameText.Text}', Kind = N'{kindText.Text}' WHERE ID = {fields["ID"]}";
+                cmd.CommandText = $"UPDATE Employee SET Surname = N'{surnameText.Text}', Name = N'{nameText.Text}', Patronymic = N'{patronymicText.Text}' WHERE ID = {fields["ID"]}";
             else
-                cmd.CommandText = $"INSERT INTO Device (Name, Kind) VALUES (N'{nameText.Text}', N'{kindText.Text}')";
+                cmd.CommandText = $"INSERT INTO Employee (Surname, Name, Patronymic) VALUES (N'{surnameText.Text}', N'{nameText.Text}', N'{patronymicText.Text}')";
             Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
             this.DialogResult = DialogResult.OK;

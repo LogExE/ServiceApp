@@ -8,25 +8,29 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ServiceApp
 {
-    public partial class DeviceForm : Form
+    public partial class TaskInProgressForm : Form
     {
         Dictionary<string, object> fields;
-        public DeviceForm(Dictionary<string, object> fields)
+        public TaskInProgressForm(Dictionary<string, object> fields)
         {
-            this.fields = fields;
             InitializeComponent();
+            this.fields = fields;
         }
-        private void DeviceForm_Load(object sender, EventArgs e)
+
+        private void TaskInProgressForm_Load(object sender, EventArgs e)
         {
             if (fields != null)
             {
-                nameText.Text = (string)fields["Name"];
-                kindText.Text = (string)fields["Kind"];
+                otaskText.Value = (int)fields["OrderedTask"];
+                employeeText.Value = (int)fields["Employee"];
+                startDatePicker.Value = (DateTime)fields["StartDate"];
+                statusText.Text = (string)fields["Status"];
             }
         }
 
@@ -36,10 +40,13 @@ namespace ServiceApp
             con.Open();
 
             SqlCommand cmd = con.CreateCommand();
+
+            string date = startDatePicker.Value.ToString("yyyy-MM-dd");
+
             if (fields != null)
-                cmd.CommandText = $"UPDATE Device SET Name = N'{nameText.Text}', Kind = N'{kindText.Text}' WHERE ID = {fields["ID"]}";
+                cmd.CommandText = $"UPDATE TaskInProgress SET OrderedTask = {otaskText.Value}, Employee = {employeeText.Value}, StartDate = '{date}', Status = '{statusText.Text}' WHERE ID = {fields["ID"]}";
             else
-                cmd.CommandText = $"INSERT INTO Device (Name, Kind) VALUES (N'{nameText.Text}', N'{kindText.Text}')";
+                cmd.CommandText = $"INSERT INTO TaskInProgress (OrderedTask, Employee, StartDate, Status) VALUES ({otaskText.Value}, {employeeText.Value}, '{date}', N'{statusText.Text}')";
             Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
             this.DialogResult = DialogResult.OK;

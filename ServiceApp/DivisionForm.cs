@@ -13,20 +13,20 @@ using System.Windows.Forms;
 
 namespace ServiceApp
 {
-    public partial class DeviceForm : Form
+    public partial class DivisionForm : Form
     {
         Dictionary<string, object> fields;
-        public DeviceForm(Dictionary<string, object> fields)
+        public DivisionForm(Dictionary<string, object> fields)
         {
-            this.fields = fields;
             InitializeComponent();
+            this.fields = fields;
         }
-        private void DeviceForm_Load(object sender, EventArgs e)
+
+        private void DivisionForm_Load(object sender, EventArgs e)
         {
             if (fields != null)
             {
                 nameText.Text = (string)fields["Name"];
-                kindText.Text = (string)fields["Kind"];
             }
         }
 
@@ -37,9 +37,9 @@ namespace ServiceApp
 
             SqlCommand cmd = con.CreateCommand();
             if (fields != null)
-                cmd.CommandText = $"UPDATE Device SET Name = N'{nameText.Text}', Kind = N'{kindText.Text}' WHERE ID = {fields["ID"]}";
+                cmd.CommandText = $"UPDATE Division SET Name = N'{nameText.Text}' WHERE ID = {fields["ID"]}";
             else
-                cmd.CommandText = $"INSERT INTO Device (Name, Kind) VALUES (N'{nameText.Text}', N'{kindText.Text}')";
+                cmd.CommandText = $"INSERT INTO Division (Name) VALUES (N'{nameText.Text}')";
             Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
             this.DialogResult = DialogResult.OK;

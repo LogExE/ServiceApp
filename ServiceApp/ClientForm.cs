@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -42,7 +43,7 @@ namespace ServiceApp
                 cmd.CommandText = $"UPDATE Client SET Surname = N'{surnameText.Text}', Name = N'{nameText.Text}', Patronymic = N'{patronymicText.Text}', Phone = N'{phoneText.Text}' WHERE ID = {fields["ID"]}";
             else 
                 cmd.CommandText = $"INSERT INTO Client (Surname, Name, Patronymic, Phone) VALUES (N'{surnameText.Text}', N'{nameText.Text}', N'{patronymicText.Text}', N'{phoneText.Text}')";
-            Console.WriteLine(cmd.CommandText);
+            Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
             this.DialogResult = DialogResult.OK;
             this.Close();

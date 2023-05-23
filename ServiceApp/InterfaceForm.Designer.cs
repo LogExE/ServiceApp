@@ -61,7 +61,6 @@
             this.mainDataGrid.RowTemplate.Height = 41;
             this.mainDataGrid.Size = new System.Drawing.Size(642, 225);
             this.mainDataGrid.TabIndex = 1;
-            this.mainDataGrid.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.mainDataGrid_CellMouseDoubleClick);
             // 
             // roleLabel
             // 

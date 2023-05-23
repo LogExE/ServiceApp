@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using System.Configuration;
+using System.Diagnostics;
 
 namespace ServiceApp
 {
