@@ -44,6 +44,7 @@
             reqByClButton = new Button();
             reqGenButton = new Button();
             groupBox3 = new GroupBox();
+            taskDatesButton = new Button();
             reqTasksButton = new Button();
             mergeButton = new Button();
             ((System.ComponentModel.ISupportInitialize)mainDataGrid).BeginInit();
@@ -250,6 +251,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(taskDatesButton);
             groupBox3.Controls.Add(reqTasksButton);
             groupBox3.Controls.Add(mergeButton);
             groupBox3.Dock = DockStyle.Fill;
@@ -259,6 +261,16 @@
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Процедуры";
+            // 
+            // taskDatesButton
+            // 
+            taskDatesButton.Location = new Point(6, 104);
+            taskDatesButton.Name = "taskDatesButton";
+            taskDatesButton.Size = new Size(202, 49);
+            taskDatesButton.TabIndex = 2;
+            taskDatesButton.Text = "Количество задач за период";
+            taskDatesButton.UseVisualStyleBackColor = true;
+            taskDatesButton.Click += taskDatesButton_Click;
             // 
             // reqTasksButton
             // 
@@ -322,5 +334,6 @@
         private GroupBox groupBox3;
         private Button mergeButton;
         private Button reqTasksButton;
+        private Button taskDatesButton;
     }
 }

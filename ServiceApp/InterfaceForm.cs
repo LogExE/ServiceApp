@@ -273,5 +273,12 @@ namespace ServiceApp
             cmd.ExecuteNonQuery();
             FillTheGrid(cmd);
         }
+
+        private void taskDatesButton_Click(object sender, EventArgs e)
+        {
+            var procForm = new TaskAppliedOnForm();
+            if (procForm.ShowDialog() == DialogResult.OK)
+                MessageBox.Show(procForm.result.ToString(), "Результат процедуры");
+        }
     }
 }
