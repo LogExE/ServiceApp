@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
+using Microsoft.VisualBasic;
 
 namespace ServiceApp
 {
@@ -74,12 +75,12 @@ namespace ServiceApp
 
         private string getTableComboTextSelection()
         {
-            return (string)tableComboBox.SelectedItem;
+            return tableComboBox.Text;
         }
 
-        private void tableComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void tableComboBox_TextChanged(object sender, EventArgs e)
         {
-            if (getTableComboTextSelection() == null)
+            if (!nameToTable.Keys.Contains(getTableComboTextSelection()))
             {
                 addButton.Enabled = false;
                 updateButton.Enabled = false;
@@ -128,9 +129,6 @@ namespace ServiceApp
         private void updateButton_Click(object sender, EventArgs e)
         {
             string table = nameToTable[getTableComboTextSelection()];
-            int rows = mainDataGrid.SelectedRows.Count;
-            if (rows != 1)
-                return;
 
             Dictionary<string, object> fields = new Dictionary<string, object>();
             foreach (DataGridViewCell cell in mainDataGrid.SelectedRows[0].Cells)
@@ -145,9 +143,6 @@ namespace ServiceApp
         private void deleteButton_Click(object sender, EventArgs e)
         {
             string table = nameToTable[getTableComboTextSelection()];
-            int rows = mainDataGrid.SelectedRows.Count;
-            if (rows != 1)
-                return;
 
             if (MessageBox.Show("Действительно удалить строку?", "Подтвердите действие",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question,
@@ -167,7 +162,7 @@ namespace ServiceApp
 
         private void mainDataGrid_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
         {
-            if (mainDataGrid.SelectedRows.Count == 0)
+            if (!nameToTable.Keys.Contains(getTableComboTextSelection()) || mainDataGrid.SelectedRows.Count == 0)
             {
                 updateButton.Enabled = false;
                 deleteButton.Enabled = false;
@@ -181,14 +176,50 @@ namespace ServiceApp
 
         private void mainDataGrid_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (getTableComboTextSelection() == null || nameToTable[getTableComboTextSelection()] != "Request")
+            if (nameToTable[getTableComboTextSelection()] != "Request")
                 return;
 
             int reqId = (int)mainDataGrid.Rows[e.RowIndex].Cells["ID"].Value;
             string query = $"SELECT OrderedTask.* FROM OrderedTask JOIN RequestOrderedTask RO ON RO.OrderedTask = OrderedTask.ID WHERE RO.Request = {reqId}";
 
             AllRowsFromQueryIntoGrid(query);
-            tableComboBox.SelectedItem = null;
+            tableComboBox.Text = "Задачи по заказу";
+        }
+
+        private void reqGenButton_Click(object sender, EventArgs e)
+        {
+            string resp = Interaction.InputBox("Введите номер заявки!");
+            if (resp == "")
+                return;
+            int id;
+            try
+            {
+                id = int.Parse(resp);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Введено не число!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            AllRowsFromQueryIntoGrid($"SELECT * FROM RequestForm WHERE ID = {id}");
+            tableComboBox.Text = "Форма заявки";
+        }
+
+        private void reqByClButton_Click(object sender, EventArgs e)
+        {
+            AllRowsFromTableIntoGrid("RequestsByClients");
+            tableComboBox.Text = "Заявки по клиентам";
+        }
+
+        private void taskPartsButton_Click(object sender, EventArgs e)
+        {
+            AllRowsFromTableIntoGrid("ClusteredView");
+            tableComboBox.Text = "Заявки с запчастями";
+        }
+
+        private void edViewButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
