@@ -51,11 +51,16 @@ namespace ServiceApp
 
         private void AllRowsFromTableIntoGrid(string table)
         {
+            AllRowsFromQueryIntoGrid($"SELECT * FROM {table}");
+        }
+
+        private void AllRowsFromQueryIntoGrid(string query)
+        {
             using var con = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
             con.Open();
 
             var cmd = con.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM {table}";
+            cmd.CommandText = query;
             Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
 
@@ -180,23 +185,10 @@ namespace ServiceApp
                 return;
 
             int reqId = (int)mainDataGrid.Rows[e.RowIndex].Cells["ID"].Value;
+            string query = $"SELECT OrderedTask.* FROM OrderedTask JOIN RequestOrderedTask RO ON RO.OrderedTask = OrderedTask.ID WHERE RO.Request = {reqId}";
 
-            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString))
-            {
-                con.Open();
-                var cmd = con.CreateCommand();
-                cmd.CommandText = $"SELECT OrderedTask.* FROM OrderedTask JOIN RequestOrderedTask RO ON RO.OrderedTask = OrderedTask.ID WHERE RO.Request = {reqId}";
-                Debug.WriteLine(cmd.CommandText);
-                cmd.ExecuteNonQuery();
-
-                var dt = new DataTable();
-                var adapter = new SqlDataAdapter(cmd);
-                mainDataGrid.DataSource = dt;
-                adapter.Fill(dt);
-
-                mainDataGrid.EndEdit();
-                tableComboBox.SelectedItem = null;
-            }
+            AllRowsFromQueryIntoGrid(query);
+            tableComboBox.SelectedItem = null;
         }
     }
 }
