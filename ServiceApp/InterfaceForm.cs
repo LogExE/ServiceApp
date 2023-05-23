@@ -126,6 +126,9 @@ namespace ServiceApp
             foreach (DataGridViewCell cell in mainDataGrid.SelectedRows[0].Cells)
                 fields[mainDataGrid.Columns[cell.ColumnIndex].Name] = cell.Value;
 
+            if (table.Equals("AppUser"))
+                fields["you"] = 
+
             var form = GimmeTableForm(table, fields);
             var res = form.ShowDialog();
             if (res == DialogResult.OK)

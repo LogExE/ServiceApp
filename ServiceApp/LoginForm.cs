@@ -23,7 +23,7 @@ namespace ServiceApp
             using var con = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
             con.Open();
             var cmd = con.CreateCommand();
-            cmd.CommandText = $"SELECT Passwd FROM AppUser WHERE Login = '{login}'";
+            cmd.CommandText = $"SELECT Passwd FROM AppUser WHERE Login = N'{login}'";
             cmd.ExecuteNonQuery();
             object ret = cmd.ExecuteScalar();
 
@@ -39,7 +39,7 @@ namespace ServiceApp
                 return;
             }
 
-            cmd.CommandText = $"SELECT IsAdmin FROM AppUser WHERE Login = '{login}'";
+            cmd.CommandText = $"SELECT IsAdmin FROM AppUser WHERE Login = N'{login}'";
             cmd.ExecuteNonQuery();
             bool isAdmin = (bool)cmd.ExecuteScalar();
             
