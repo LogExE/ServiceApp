@@ -72,15 +72,6 @@ namespace ServiceApp
             mainDataGrid.DataSource = dt;
             adapter.Fill(dt);
 
-            /*
-            var deleteButton = new DataGridViewButtonColumn();
-            deleteButton.Name = "dataGridViewDeleteButton";
-            deleteButton.HeaderText = "Удалить";
-            deleteButton.Text = "X";
-            deleteButton.UseColumnTextForButtonValue = true;
-            mainDataGrid.Columns.Add(deleteButton);
-            */
-
             mainDataGrid.EndEdit();
         }
 
@@ -141,11 +132,12 @@ namespace ServiceApp
             if (rows != 1)
                 return;
 
-            int idToDelete = (int)mainDataGrid.SelectedRows[0].Cells["ID"].Value;
+            string idCol = (table == "FinishedRequest") ? "Request" : "ID";
+            int idToDelete = (int)mainDataGrid.SelectedRows[0].Cells[idCol].Value;
             using var con = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
             con.Open();
             var cmd = con.CreateCommand();
-            cmd.CommandText = $"DELETE FROM {table} WHERE ID = {idToDelete}";
+            cmd.CommandText = $"DELETE FROM {table} WHERE {idCol} = {idToDelete}";
             Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
             AllRowsFromTableIntoGrid(table);
