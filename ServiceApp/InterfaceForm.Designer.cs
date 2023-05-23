@@ -60,6 +60,7 @@
             mainDataGrid.RowTemplate.Height = 41;
             mainDataGrid.Size = new Size(642, 225);
             mainDataGrid.TabIndex = 1;
+            mainDataGrid.RowHeaderMouseDoubleClick += mainDataGrid_RowHeaderMouseDoubleClick;
             mainDataGrid.RowStateChanged += mainDataGrid_RowStateChanged;
             // 
             // roleLabel

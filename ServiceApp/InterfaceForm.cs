@@ -67,9 +67,23 @@ namespace ServiceApp
             mainDataGrid.EndEdit();
         }
 
+        private string getTableComboTextSelection()
+        {
+            return (string)tableComboBox.SelectedItem;
+        }
+
         private void tableComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string text = (string)((ComboBox)sender).SelectedItem;
+            if (getTableComboTextSelection() == null)
+            {
+                addButton.Enabled = false;
+                updateButton.Enabled = false;
+                deleteButton.Enabled = false;
+                allowed = false;
+                return;
+            }
+
+            string text = getTableComboTextSelection();
             AllRowsFromTableIntoGrid(nameToTable[text]);
 
             if (!admin && !freeToWrite.Contains(text))
@@ -99,7 +113,7 @@ namespace ServiceApp
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            string table = nameToTable[(string)tableComboBox.SelectedItem];
+            string table = nameToTable[getTableComboTextSelection()];
             var form = GimmeTableForm(table, null);
             var res = form.ShowDialog();
             if (res == DialogResult.OK)
@@ -108,7 +122,7 @@ namespace ServiceApp
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            string table = nameToTable[(string)tableComboBox.SelectedItem];
+            string table = nameToTable[getTableComboTextSelection()];
             int rows = mainDataGrid.SelectedRows.Count;
             if (rows != 1)
                 return;
@@ -125,7 +139,7 @@ namespace ServiceApp
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            string table = nameToTable[(string)tableComboBox.SelectedItem];
+            string table = nameToTable[getTableComboTextSelection()];
             int rows = mainDataGrid.SelectedRows.Count;
             if (rows != 1)
                 return;
@@ -157,6 +171,31 @@ namespace ServiceApp
             {
                 updateButton.Enabled = true;
                 deleteButton.Enabled = true;
+            }
+        }
+
+        private void mainDataGrid_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (getTableComboTextSelection() == null || nameToTable[getTableComboTextSelection()] != "Request")
+                return;
+
+            int reqId = (int)mainDataGrid.Rows[e.RowIndex].Cells["ID"].Value;
+
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString))
+            {
+                con.Open();
+                var cmd = con.CreateCommand();
+                cmd.CommandText = $"SELECT OrderedTask.* FROM OrderedTask JOIN RequestOrderedTask RO ON RO.OrderedTask = OrderedTask.ID WHERE RO.Request = {reqId}";
+                Debug.WriteLine(cmd.CommandText);
+                cmd.ExecuteNonQuery();
+
+                var dt = new DataTable();
+                var adapter = new SqlDataAdapter(cmd);
+                mainDataGrid.DataSource = dt;
+                adapter.Fill(dt);
+
+                mainDataGrid.EndEdit();
+                tableComboBox.SelectedItem = null;
             }
         }
     }
