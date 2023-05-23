@@ -139,6 +139,11 @@ namespace ServiceApp
             if (rows != 1)
                 return;
 
+            if (MessageBox.Show("Действительно удалить строку?", "Подтвердите действие", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, 
+                MessageBoxDefaultButton.Button2) != DialogResult.Yes)
+                return;
+
             string idCol = (table == "FinishedRequest") ? "Request" : "ID";
             int idToDelete = (int)mainDataGrid.SelectedRows[0].Cells[idCol].Value;
             using var con = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
