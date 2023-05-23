@@ -65,14 +65,19 @@ namespace ServiceApp
             cmd.CommandText = query;
             Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
+            FillTheGrid(cmd);
 
+            lastQuery = query;
+        }
+
+        private void FillTheGrid(SqlCommand cmd)
+        {
             var dt = new DataTable();
             var adapter = new SqlDataAdapter(cmd);
             mainDataGrid.DataSource = dt;
             adapter.Fill(dt);
 
             mainDataGrid.EndEdit();
-            lastQuery = query;
         }
 
         private string getTableComboTextSelection()
@@ -175,7 +180,7 @@ namespace ServiceApp
 
         private void mainDataGrid_RowHeaderMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            if (nameToTable[getTableComboTextSelection()] != "Request")
+            if (!nameToTable.ContainsKey(getTableComboTextSelection()) || nameToTable[getTableComboTextSelection()] != "Request")
                 return;
 
             int reqId = (int)mainDataGrid.Rows[e.RowIndex].Cells["ID"].Value;
@@ -250,6 +255,23 @@ namespace ServiceApp
             cmd.ExecuteNonQuery();
             if (nameToTable[getTableComboTextSelection()] == "RequestOrderedTask")
                 RefreshGrid();
+        }
+
+        private void reqTasksButton_Click(object sender, EventArgs e)
+        {
+            using var con = new SqlConnection(ConfigurationManager.ConnectionStrings["MSSQL"].ConnectionString);
+            con.Open();
+
+            int? req = getIntFromMessageBox("Введите номер заказа");
+            if (req == null)
+                return;
+            var cmd = con.CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "get_request_progress";
+            cmd.Parameters.Add(new SqlParameter("@req_id", req));
+            Debug.WriteLine(cmd.CommandText);
+            cmd.ExecuteNonQuery();
+            FillTheGrid(cmd);
         }
     }
 }

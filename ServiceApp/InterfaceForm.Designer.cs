@@ -44,6 +44,7 @@
             reqByClButton = new Button();
             reqGenButton = new Button();
             groupBox3 = new GroupBox();
+            reqTasksButton = new Button();
             mergeButton = new Button();
             ((System.ComponentModel.ISupportInitialize)mainDataGrid).BeginInit();
             tableLayoutPanel1.SuspendLayout();
@@ -205,6 +206,7 @@
             // 
             // edViewButton
             // 
+            edViewButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             edViewButton.Location = new Point(0, 138);
             edViewButton.Name = "edViewButton";
             edViewButton.Size = new Size(209, 43);
@@ -215,6 +217,7 @@
             // 
             // taskPartsButton
             // 
+            taskPartsButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             taskPartsButton.Location = new Point(0, 99);
             taskPartsButton.Name = "taskPartsButton";
             taskPartsButton.Size = new Size(209, 33);
@@ -225,6 +228,7 @@
             // 
             // reqByClButton
             // 
+            reqByClButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             reqByClButton.Location = new Point(0, 59);
             reqByClButton.Name = "reqByClButton";
             reqByClButton.Size = new Size(209, 34);
@@ -235,6 +239,7 @@
             // 
             // reqGenButton
             // 
+            reqGenButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             reqGenButton.Location = new Point(0, 22);
             reqGenButton.Name = "reqGenButton";
             reqGenButton.Size = new Size(206, 31);
@@ -245,6 +250,7 @@
             // 
             // groupBox3
             // 
+            groupBox3.Controls.Add(reqTasksButton);
             groupBox3.Controls.Add(mergeButton);
             groupBox3.Dock = DockStyle.Fill;
             groupBox3.Location = new Point(439, 3);
@@ -254,8 +260,20 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Процедуры";
             // 
+            // reqTasksButton
+            // 
+            reqTasksButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            reqTasksButton.Location = new Point(6, 59);
+            reqTasksButton.Name = "reqTasksButton";
+            reqTasksButton.Size = new Size(202, 39);
+            reqTasksButton.TabIndex = 1;
+            reqTasksButton.Text = "Статус заказа";
+            reqTasksButton.UseVisualStyleBackColor = true;
+            reqTasksButton.Click += reqTasksButton_Click;
+            // 
             // mergeButton
             // 
+            mergeButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             mergeButton.Location = new Point(6, 22);
             mergeButton.Name = "mergeButton";
             mergeButton.Size = new Size(204, 31);
@@ -303,5 +321,6 @@
         private Button edViewButton;
         private GroupBox groupBox3;
         private Button mergeButton;
+        private Button reqTasksButton;
     }
 }
