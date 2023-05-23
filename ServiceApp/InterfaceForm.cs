@@ -17,6 +17,7 @@ namespace ServiceApp
     public partial class InterfaceForm : Form
     {
         bool admin;
+        bool allowed = false;
 
         Dictionary<string, string> nameToTable = new Dictionary<string, string>()
         {
@@ -79,17 +80,23 @@ namespace ServiceApp
         {
             string text = (string)((ComboBox)sender).SelectedItem;
             AllRowsFromTableIntoGrid(nameToTable[text]);
+
             if (!admin && !freeToWrite.Contains(text))
             {
                 addButton.Enabled = false;
                 updateButton.Enabled = false;
                 deleteButton.Enabled = false;
+                allowed = false;
             }
             else
             {
                 addButton.Enabled = true;
-                updateButton.Enabled = true;
-                deleteButton.Enabled = true;
+                allowed = true;
+                if (mainDataGrid.SelectedRows.Count != 0)
+                {
+                    updateButton.Enabled = true;
+                    deleteButton.Enabled = true;
+                }
             }
         }
 
@@ -141,6 +148,20 @@ namespace ServiceApp
             Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();
             AllRowsFromTableIntoGrid(table);
+        }
+
+        private void mainDataGrid_RowStateChanged(object sender, DataGridViewRowStateChangedEventArgs e)
+        {
+            if (mainDataGrid.SelectedRows.Count == 0)
+            {
+                updateButton.Enabled = false;
+                deleteButton.Enabled = false;
+            }
+            else if (allowed)
+            {
+                updateButton.Enabled = true;
+                deleteButton.Enabled = true;
+            }
         }
     }
 }

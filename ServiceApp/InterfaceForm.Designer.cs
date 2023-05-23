@@ -55,12 +55,14 @@
             this.mainDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.mainDataGrid.Location = new System.Drawing.Point(10, 24);
             this.mainDataGrid.Margin = new System.Windows.Forms.Padding(10, 1, 10, 1);
+            this.mainDataGrid.MultiSelect = false;
             this.mainDataGrid.Name = "mainDataGrid";
             this.mainDataGrid.ReadOnly = true;
             this.mainDataGrid.RowHeadersWidth = 82;
             this.mainDataGrid.RowTemplate.Height = 41;
             this.mainDataGrid.Size = new System.Drawing.Size(642, 225);
             this.mainDataGrid.TabIndex = 1;
+            this.mainDataGrid.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.mainDataGrid_RowStateChanged);
             // 
             // roleLabel
             // 
@@ -145,6 +147,7 @@
             // 
             this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.deleteButton.Enabled = false;
             this.deleteButton.Location = new System.Drawing.Point(6, 94);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(161, 25);
@@ -157,6 +160,7 @@
             // 
             this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.updateButton.Enabled = false;
             this.updateButton.Location = new System.Drawing.Point(6, 63);
             this.updateButton.Name = "updateButton";
             this.updateButton.Size = new System.Drawing.Size(161, 25);
