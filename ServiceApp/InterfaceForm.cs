@@ -1,16 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace ServiceApp
 {
@@ -103,7 +94,7 @@ namespace ServiceApp
         private Form GimmeTableForm(string name, Dictionary<string, object> fields)
         {
             var typ = Type.GetType(nameof(ServiceApp) + "." + name + "Form");
-            return Activator.CreateInstance(typ, new object[] { fields } ) as Form;
+            return Activator.CreateInstance(typ, new object[] { fields }) as Form;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -139,8 +130,8 @@ namespace ServiceApp
             if (rows != 1)
                 return;
 
-            if (MessageBox.Show("Действительно удалить строку?", "Подтвердите действие", 
-                MessageBoxButtons.YesNo, MessageBoxIcon.Question, 
+            if (MessageBox.Show("Действительно удалить строку?", "Подтвердите действие",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question,
                 MessageBoxDefaultButton.Button2) != DialogResult.Yes)
                 return;
 

@@ -1,15 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ServiceApp
 {
@@ -41,7 +32,7 @@ namespace ServiceApp
             SqlCommand cmd = con.CreateCommand();
             if (fields != null)
                 cmd.CommandText = $"UPDATE Client SET Surname = N'{surnameText.Text}', Name = N'{nameText.Text}', Patronymic = N'{patronymicText.Text}', Phone = N'{phoneText.Text}' WHERE ID = {fields["ID"]}";
-            else 
+            else
                 cmd.CommandText = $"INSERT INTO Client (Surname, Name, Patronymic, Phone) VALUES (N'{surnameText.Text}', N'{nameText.Text}', N'{patronymicText.Text}', N'{phoneText.Text}')";
             Debug.WriteLine(cmd.CommandText);
             cmd.ExecuteNonQuery();

@@ -1,6 +1,3 @@
-using Microsoft.Data.SqlClient;
-using System.Drawing;
-
 namespace ServiceApp
 {
     internal static class Program

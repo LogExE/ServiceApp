@@ -28,176 +28,170 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mainDataGrid = new System.Windows.Forms.DataGridView();
-            this.roleLabel = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableComboBox = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.deleteButton = new System.Windows.Forms.Button();
-            this.updateButton = new System.Windows.Forms.Button();
-            this.addButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataGrid)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.SuspendLayout();
+            mainDataGrid = new DataGridView();
+            roleLabel = new Label();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            tableLayoutPanel3 = new TableLayoutPanel();
+            tableComboBox = new ComboBox();
+            groupBox1 = new GroupBox();
+            deleteButton = new Button();
+            updateButton = new Button();
+            addButton = new Button();
+            ((System.ComponentModel.ISupportInitialize)mainDataGrid).BeginInit();
+            tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
+            tableLayoutPanel3.SuspendLayout();
+            groupBox1.SuspendLayout();
+            SuspendLayout();
             // 
             // mainDataGrid
             // 
-            this.mainDataGrid.AllowUserToAddRows = false;
-            this.mainDataGrid.AllowUserToDeleteRows = false;
-            this.mainDataGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.mainDataGrid.Location = new System.Drawing.Point(10, 24);
-            this.mainDataGrid.Margin = new System.Windows.Forms.Padding(10, 1, 10, 1);
-            this.mainDataGrid.MultiSelect = false;
-            this.mainDataGrid.Name = "mainDataGrid";
-            this.mainDataGrid.ReadOnly = true;
-            this.mainDataGrid.RowHeadersWidth = 82;
-            this.mainDataGrid.RowTemplate.Height = 41;
-            this.mainDataGrid.Size = new System.Drawing.Size(642, 225);
-            this.mainDataGrid.TabIndex = 1;
-            this.mainDataGrid.RowStateChanged += new System.Windows.Forms.DataGridViewRowStateChangedEventHandler(this.mainDataGrid_RowStateChanged);
+            mainDataGrid.AllowUserToAddRows = false;
+            mainDataGrid.AllowUserToDeleteRows = false;
+            mainDataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            mainDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            mainDataGrid.Location = new Point(10, 24);
+            mainDataGrid.Margin = new Padding(10, 1, 10, 1);
+            mainDataGrid.MultiSelect = false;
+            mainDataGrid.Name = "mainDataGrid";
+            mainDataGrid.ReadOnly = true;
+            mainDataGrid.RowHeadersWidth = 82;
+            mainDataGrid.RowTemplate.Height = 41;
+            mainDataGrid.Size = new Size(642, 225);
+            mainDataGrid.TabIndex = 1;
+            mainDataGrid.RowStateChanged += mainDataGrid_RowStateChanged;
             // 
             // roleLabel
             // 
-            this.roleLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roleLabel.Location = new System.Drawing.Point(3, 0);
-            this.roleLabel.Name = "roleLabel";
-            this.roleLabel.Size = new System.Drawing.Size(656, 23);
-            this.roleLabel.TabIndex = 2;
-            this.roleLabel.Text = "<роль>";
-            this.roleLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            roleLabel.Dock = DockStyle.Fill;
+            roleLabel.Location = new Point(3, 0);
+            roleLabel.Name = "roleLabel";
+            roleLabel.Size = new Size(656, 23);
+            roleLabel.TabIndex = 2;
+            roleLabel.Text = "<роль>";
+            roleLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.mainDataGrid, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.roleLabel, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 4.97849F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.51075F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.51075F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(662, 478);
-            this.tableLayoutPanel1.TabIndex = 3;
+            tableLayoutPanel1.ColumnCount = 1;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.Controls.Add(mainDataGrid, 0, 1);
+            tableLayoutPanel1.Controls.Add(roleLabel, 0, 0);
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 2);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.RowCount = 3;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 4.97849F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 47.51075F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 47.51075F));
+            tableLayoutPanel1.Size = new Size(662, 478);
+            tableLayoutPanel1.TabIndex = 3;
             // 
             // tableLayoutPanel2
             // 
-            this.tableLayoutPanel2.ColumnCount = 2;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.25719F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 71.74281F));
-            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel3, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 253);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(656, 222);
-            this.tableLayoutPanel2.TabIndex = 3;
+            tableLayoutPanel2.ColumnCount = 2;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 28.25719F));
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 71.74281F));
+            tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 0);
+            tableLayoutPanel2.Dock = DockStyle.Fill;
+            tableLayoutPanel2.Location = new Point(3, 253);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 1;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
+            tableLayoutPanel2.Size = new Size(656, 222);
+            tableLayoutPanel2.TabIndex = 3;
             // 
             // tableLayoutPanel3
             // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.tableComboBox, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.groupBox1, 0, 1);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.92994F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 77.07006F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(179, 216);
-            this.tableLayoutPanel3.TabIndex = 0;
+            tableLayoutPanel3.ColumnCount = 1;
+            tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel3.Controls.Add(tableComboBox, 0, 0);
+            tableLayoutPanel3.Controls.Add(groupBox1, 0, 1);
+            tableLayoutPanel3.Dock = DockStyle.Fill;
+            tableLayoutPanel3.Location = new Point(3, 3);
+            tableLayoutPanel3.Name = "tableLayoutPanel3";
+            tableLayoutPanel3.RowCount = 2;
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 22.92994F));
+            tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 77.07006F));
+            tableLayoutPanel3.Size = new Size(179, 216);
+            tableLayoutPanel3.TabIndex = 0;
             // 
             // tableComboBox
             // 
-            this.tableComboBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableComboBox.FormattingEnabled = true;
-            this.tableComboBox.Location = new System.Drawing.Point(3, 3);
-            this.tableComboBox.Name = "tableComboBox";
-            this.tableComboBox.Size = new System.Drawing.Size(173, 23);
-            this.tableComboBox.TabIndex = 0;
-            this.tableComboBox.SelectedIndexChanged += new System.EventHandler(this.tableComboBox_SelectedIndexChanged);
+            tableComboBox.Dock = DockStyle.Fill;
+            tableComboBox.FormattingEnabled = true;
+            tableComboBox.Location = new Point(3, 3);
+            tableComboBox.Name = "tableComboBox";
+            tableComboBox.Size = new Size(173, 23);
+            tableComboBox.TabIndex = 0;
+            tableComboBox.SelectedIndexChanged += tableComboBox_SelectedIndexChanged;
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.deleteButton);
-            this.groupBox1.Controls.Add(this.updateButton);
-            this.groupBox1.Controls.Add(this.addButton);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 52);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(173, 161);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Действия";
+            groupBox1.Controls.Add(deleteButton);
+            groupBox1.Controls.Add(updateButton);
+            groupBox1.Controls.Add(addButton);
+            groupBox1.Dock = DockStyle.Fill;
+            groupBox1.Location = new Point(3, 52);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(173, 161);
+            groupBox1.TabIndex = 1;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Действия";
             // 
             // deleteButton
             // 
-            this.deleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.deleteButton.Enabled = false;
-            this.deleteButton.Location = new System.Drawing.Point(6, 94);
-            this.deleteButton.Name = "deleteButton";
-            this.deleteButton.Size = new System.Drawing.Size(161, 25);
-            this.deleteButton.TabIndex = 2;
-            this.deleteButton.Text = "Удалить";
-            this.deleteButton.UseVisualStyleBackColor = true;
-            this.deleteButton.Click += new System.EventHandler(this.deleteButton_Click);
+            deleteButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            deleteButton.Enabled = false;
+            deleteButton.Location = new Point(6, 94);
+            deleteButton.Name = "deleteButton";
+            deleteButton.Size = new Size(161, 25);
+            deleteButton.TabIndex = 2;
+            deleteButton.Text = "Удалить";
+            deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // updateButton
             // 
-            this.updateButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.updateButton.Enabled = false;
-            this.updateButton.Location = new System.Drawing.Point(6, 63);
-            this.updateButton.Name = "updateButton";
-            this.updateButton.Size = new System.Drawing.Size(161, 25);
-            this.updateButton.TabIndex = 1;
-            this.updateButton.Text = "Изменить";
-            this.updateButton.UseVisualStyleBackColor = true;
-            this.updateButton.Click += new System.EventHandler(this.updateButton_Click);
+            updateButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            updateButton.Enabled = false;
+            updateButton.Location = new Point(6, 63);
+            updateButton.Name = "updateButton";
+            updateButton.Size = new Size(161, 25);
+            updateButton.TabIndex = 1;
+            updateButton.Text = "Изменить";
+            updateButton.UseVisualStyleBackColor = true;
+            updateButton.Click += updateButton_Click;
             // 
             // addButton
             // 
-            this.addButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addButton.Location = new System.Drawing.Point(6, 32);
-            this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(161, 25);
-            this.addButton.TabIndex = 0;
-            this.addButton.Text = "Добавить";
-            this.addButton.UseVisualStyleBackColor = true;
-            this.addButton.Click += new System.EventHandler(this.addButton_Click);
+            addButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            addButton.Location = new Point(6, 32);
+            addButton.Name = "addButton";
+            addButton.Size = new Size(161, 25);
+            addButton.TabIndex = 0;
+            addButton.Text = "Добавить";
+            addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // InterfaceForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 478);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
-            this.Name = "InterfaceForm";
-            this.Text = "Интерфейс";
-            this.Load += new System.EventHandler(this.Form2_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.mainDataGrid)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(662, 478);
+            Controls.Add(tableLayoutPanel1);
+            Margin = new Padding(2, 1, 2, 1);
+            Name = "InterfaceForm";
+            Text = "Интерфейс";
+            Load += Form2_Load;
+            ((System.ComponentModel.ISupportInitialize)mainDataGrid).EndInit();
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
+            tableLayoutPanel3.ResumeLayout(false);
+            groupBox1.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion

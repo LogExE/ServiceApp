@@ -1,6 +1,5 @@
 using Microsoft.Data.SqlClient;
 using System.Configuration;
-using System.Diagnostics;
 
 namespace ServiceApp
 {
@@ -42,7 +41,7 @@ namespace ServiceApp
             cmd.CommandText = $"SELECT IsAdmin FROM AppUser WHERE Login = N'{login}'";
             cmd.ExecuteNonQuery();
             bool isAdmin = (bool)cmd.ExecuteScalar();
-            
+
             var frm = new InterfaceForm(isAdmin)
             {
                 Location = this.Location,
