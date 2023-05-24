@@ -62,14 +62,14 @@
             mainDataGrid.AllowUserToDeleteRows = false;
             mainDataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             mainDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            mainDataGrid.Location = new Point(10, 24);
-            mainDataGrid.Margin = new Padding(10, 1, 10, 1);
+            mainDataGrid.Location = new Point(19, 52);
+            mainDataGrid.Margin = new Padding(19, 2, 19, 2);
             mainDataGrid.MultiSelect = false;
             mainDataGrid.Name = "mainDataGrid";
             mainDataGrid.ReadOnly = true;
             mainDataGrid.RowHeadersWidth = 82;
             mainDataGrid.RowTemplate.Height = 41;
-            mainDataGrid.Size = new Size(642, 225);
+            mainDataGrid.Size = new Size(1191, 480);
             mainDataGrid.TabIndex = 1;
             mainDataGrid.RowHeaderMouseDoubleClick += mainDataGrid_RowHeaderMouseDoubleClick;
             mainDataGrid.RowStateChanged += mainDataGrid_RowStateChanged;
@@ -77,9 +77,10 @@
             // roleLabel
             // 
             roleLabel.Dock = DockStyle.Fill;
-            roleLabel.Location = new Point(3, 0);
+            roleLabel.Location = new Point(6, 0);
+            roleLabel.Margin = new Padding(6, 0, 6, 0);
             roleLabel.Name = "roleLabel";
-            roleLabel.Size = new Size(656, 23);
+            roleLabel.Size = new Size(1217, 50);
             roleLabel.TabIndex = 2;
             roleLabel.Text = "<роль>";
             roleLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -93,12 +94,13 @@
             tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 0, 2);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(6);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 4.97849F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 47.51075F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 47.51075F));
-            tableLayoutPanel1.Size = new Size(662, 478);
+            tableLayoutPanel1.Size = new Size(1229, 1020);
             tableLayoutPanel1.TabIndex = 3;
             // 
             // tableLayoutPanel2
@@ -111,11 +113,12 @@
             tableLayoutPanel2.Controls.Add(groupBox2, 1, 0);
             tableLayoutPanel2.Controls.Add(groupBox3, 2, 0);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(3, 253);
+            tableLayoutPanel2.Location = new Point(6, 540);
+            tableLayoutPanel2.Margin = new Padding(6);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 1;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Size = new Size(656, 222);
+            tableLayoutPanel2.Size = new Size(1217, 474);
             tableLayoutPanel2.TabIndex = 3;
             // 
             // tableLayoutPanel3
@@ -125,21 +128,23 @@
             tableLayoutPanel3.Controls.Add(tableComboBox, 0, 0);
             tableLayoutPanel3.Controls.Add(groupBox1, 0, 1);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 3);
+            tableLayoutPanel3.Location = new Point(6, 6);
+            tableLayoutPanel3.Margin = new Padding(6);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 22.92994F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 77.07006F));
-            tableLayoutPanel3.Size = new Size(212, 216);
+            tableLayoutPanel3.Size = new Size(393, 462);
             tableLayoutPanel3.TabIndex = 0;
             // 
             // tableComboBox
             // 
             tableComboBox.Dock = DockStyle.Fill;
             tableComboBox.FormattingEnabled = true;
-            tableComboBox.Location = new Point(3, 3);
+            tableComboBox.Location = new Point(6, 6);
+            tableComboBox.Margin = new Padding(6);
             tableComboBox.Name = "tableComboBox";
-            tableComboBox.Size = new Size(206, 23);
+            tableComboBox.Size = new Size(381, 40);
             tableComboBox.TabIndex = 0;
             tableComboBox.TextChanged += tableComboBox_TextChanged;
             // 
@@ -149,9 +154,11 @@
             groupBox1.Controls.Add(updateButton);
             groupBox1.Controls.Add(addButton);
             groupBox1.Dock = DockStyle.Fill;
-            groupBox1.Location = new Point(3, 52);
+            groupBox1.Location = new Point(6, 111);
+            groupBox1.Margin = new Padding(6);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(206, 161);
+            groupBox1.Padding = new Padding(6);
+            groupBox1.Size = new Size(381, 345);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Действия";
@@ -160,9 +167,10 @@
             // 
             deleteButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             deleteButton.Enabled = false;
-            deleteButton.Location = new Point(6, 94);
+            deleteButton.Location = new Point(11, 201);
+            deleteButton.Margin = new Padding(6);
             deleteButton.Name = "deleteButton";
-            deleteButton.Size = new Size(188, 25);
+            deleteButton.Size = new Size(347, 53);
             deleteButton.TabIndex = 2;
             deleteButton.Text = "Удалить";
             deleteButton.UseVisualStyleBackColor = true;
@@ -172,9 +180,10 @@
             // 
             updateButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             updateButton.Enabled = false;
-            updateButton.Location = new Point(6, 63);
+            updateButton.Location = new Point(11, 134);
+            updateButton.Margin = new Padding(6);
             updateButton.Name = "updateButton";
-            updateButton.Size = new Size(188, 25);
+            updateButton.Size = new Size(347, 53);
             updateButton.TabIndex = 1;
             updateButton.Text = "Изменить";
             updateButton.UseVisualStyleBackColor = true;
@@ -183,9 +192,10 @@
             // addButton
             // 
             addButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            addButton.Location = new Point(6, 32);
+            addButton.Location = new Point(11, 68);
+            addButton.Margin = new Padding(6);
             addButton.Name = "addButton";
-            addButton.Size = new Size(188, 25);
+            addButton.Size = new Size(347, 53);
             addButton.TabIndex = 0;
             addButton.Text = "Добавить";
             addButton.UseVisualStyleBackColor = true;
@@ -198,9 +208,11 @@
             groupBox2.Controls.Add(reqByClButton);
             groupBox2.Controls.Add(reqGenButton);
             groupBox2.Dock = DockStyle.Fill;
-            groupBox2.Location = new Point(221, 3);
+            groupBox2.Location = new Point(411, 6);
+            groupBox2.Margin = new Padding(6);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(212, 216);
+            groupBox2.Padding = new Padding(6);
+            groupBox2.Size = new Size(393, 462);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Отчеты";
@@ -208,9 +220,10 @@
             // edViewButton
             // 
             edViewButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            edViewButton.Location = new Point(0, 138);
+            edViewButton.Location = new Point(0, 294);
+            edViewButton.Margin = new Padding(6);
             edViewButton.Name = "edViewButton";
-            edViewButton.Size = new Size(209, 43);
+            edViewButton.Size = new Size(387, 92);
             edViewButton.TabIndex = 3;
             edViewButton.Text = "Выполненные/невыполненные заявки по дате";
             edViewButton.UseVisualStyleBackColor = true;
@@ -219,9 +232,10 @@
             // taskPartsButton
             // 
             taskPartsButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            taskPartsButton.Location = new Point(0, 99);
+            taskPartsButton.Location = new Point(0, 211);
+            taskPartsButton.Margin = new Padding(6);
             taskPartsButton.Name = "taskPartsButton";
-            taskPartsButton.Size = new Size(209, 33);
+            taskPartsButton.Size = new Size(387, 70);
             taskPartsButton.TabIndex = 2;
             taskPartsButton.Text = "Задачи, требуются запчасти";
             taskPartsButton.UseVisualStyleBackColor = true;
@@ -230,9 +244,10 @@
             // reqByClButton
             // 
             reqByClButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            reqByClButton.Location = new Point(0, 59);
+            reqByClButton.Location = new Point(0, 126);
+            reqByClButton.Margin = new Padding(6);
             reqByClButton.Name = "reqByClButton";
-            reqByClButton.Size = new Size(209, 34);
+            reqByClButton.Size = new Size(387, 73);
             reqByClButton.TabIndex = 1;
             reqByClButton.Text = "Заявки по клиентам";
             reqByClButton.UseVisualStyleBackColor = true;
@@ -241,9 +256,10 @@
             // reqGenButton
             // 
             reqGenButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            reqGenButton.Location = new Point(0, 22);
+            reqGenButton.Location = new Point(0, 47);
+            reqGenButton.Margin = new Padding(6);
             reqGenButton.Name = "reqGenButton";
-            reqGenButton.Size = new Size(206, 31);
+            reqGenButton.Size = new Size(382, 66);
             reqGenButton.TabIndex = 0;
             reqGenButton.Text = "Форма заявки";
             reqGenButton.UseVisualStyleBackColor = true;
@@ -255,18 +271,21 @@
             groupBox3.Controls.Add(reqTasksButton);
             groupBox3.Controls.Add(mergeButton);
             groupBox3.Dock = DockStyle.Fill;
-            groupBox3.Location = new Point(439, 3);
+            groupBox3.Location = new Point(816, 6);
+            groupBox3.Margin = new Padding(6);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(214, 216);
+            groupBox3.Padding = new Padding(6);
+            groupBox3.Size = new Size(395, 462);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
             groupBox3.Text = "Процедуры";
             // 
             // taskDatesButton
             // 
-            taskDatesButton.Location = new Point(6, 104);
+            taskDatesButton.Location = new Point(11, 222);
+            taskDatesButton.Margin = new Padding(6);
             taskDatesButton.Name = "taskDatesButton";
-            taskDatesButton.Size = new Size(202, 49);
+            taskDatesButton.Size = new Size(375, 105);
             taskDatesButton.TabIndex = 2;
             taskDatesButton.Text = "Количество задач за период";
             taskDatesButton.UseVisualStyleBackColor = true;
@@ -275,9 +294,10 @@
             // reqTasksButton
             // 
             reqTasksButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            reqTasksButton.Location = new Point(6, 59);
+            reqTasksButton.Location = new Point(11, 126);
+            reqTasksButton.Margin = new Padding(6);
             reqTasksButton.Name = "reqTasksButton";
-            reqTasksButton.Size = new Size(202, 39);
+            reqTasksButton.Size = new Size(373, 83);
             reqTasksButton.TabIndex = 1;
             reqTasksButton.Text = "Статус заказа";
             reqTasksButton.UseVisualStyleBackColor = true;
@@ -286,9 +306,10 @@
             // mergeButton
             // 
             mergeButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            mergeButton.Location = new Point(6, 22);
+            mergeButton.Location = new Point(11, 47);
+            mergeButton.Margin = new Padding(6);
             mergeButton.Name = "mergeButton";
-            mergeButton.Size = new Size(204, 31);
+            mergeButton.Size = new Size(377, 66);
             mergeButton.TabIndex = 0;
             mergeButton.Text = "Объединить заказы";
             mergeButton.UseVisualStyleBackColor = true;
@@ -296,11 +317,11 @@
             // 
             // InterfaceForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(662, 478);
+            ClientSize = new Size(1229, 1020);
             Controls.Add(tableLayoutPanel1);
-            Margin = new Padding(2, 1, 2, 1);
+            Margin = new Padding(4, 2, 4, 2);
             Name = "InterfaceForm";
             Text = "Интерфейс";
             Load += Form2_Load;
