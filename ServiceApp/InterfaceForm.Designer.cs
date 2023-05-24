@@ -61,6 +61,7 @@
             mainDataGrid.AllowUserToAddRows = false;
             mainDataGrid.AllowUserToDeleteRows = false;
             mainDataGrid.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            mainDataGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             mainDataGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             mainDataGrid.Location = new Point(19, 52);
             mainDataGrid.Margin = new Padding(19, 2, 19, 2);
@@ -282,6 +283,7 @@
             // 
             // taskDatesButton
             // 
+            taskDatesButton.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             taskDatesButton.Location = new Point(11, 222);
             taskDatesButton.Margin = new Padding(6);
             taskDatesButton.Name = "taskDatesButton";
