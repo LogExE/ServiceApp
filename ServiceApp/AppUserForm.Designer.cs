@@ -28,120 +28,107 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.pwdText = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.loginText = new System.Windows.Forms.TextBox();
-            this.proceedButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.admCheck = new System.Windows.Forms.CheckBox();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.SuspendLayout();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            pwdText = new TextBox();
+            label1 = new Label();
+            label2 = new Label();
+            loginText = new TextBox();
+            proceedButton = new Button();
+            admCheck = new CheckBox();
+            tableLayoutPanel1.SuspendLayout();
+            SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 164F));
-            this.tableLayoutPanel1.Controls.Add(this.pwdText, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.loginText, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.proceedButton, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.admCheck, 1, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.Padding = new System.Windows.Forms.Padding(30, 50, 30, 30);
-            this.tableLayoutPanel1.RowCount = 4;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00145F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25.00146F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.99896F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.99813F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(369, 333);
-            this.tableLayoutPanel1.TabIndex = 11;
+            tableLayoutPanel1.ColumnCount = 2;
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 164F));
+            tableLayoutPanel1.Controls.Add(pwdText, 1, 1);
+            tableLayoutPanel1.Controls.Add(label1, 0, 0);
+            tableLayoutPanel1.Controls.Add(label2, 0, 1);
+            tableLayoutPanel1.Controls.Add(loginText, 1, 0);
+            tableLayoutPanel1.Controls.Add(proceedButton, 1, 3);
+            tableLayoutPanel1.Controls.Add(admCheck, 1, 2);
+            tableLayoutPanel1.Dock = DockStyle.Fill;
+            tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Name = "tableLayoutPanel1";
+            tableLayoutPanel1.Padding = new Padding(30, 50, 30, 30);
+            tableLayoutPanel1.RowCount = 4;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25.00145F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 25.00146F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 24.99896F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 24.99813F));
+            tableLayoutPanel1.Size = new Size(369, 333);
+            tableLayoutPanel1.TabIndex = 11;
             // 
             // pwdText
             // 
-            this.pwdText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pwdText.Location = new System.Drawing.Point(178, 116);
-            this.pwdText.Name = "pwdText";
-            this.pwdText.Size = new System.Drawing.Size(158, 23);
-            this.pwdText.TabIndex = 22;
+            pwdText.Dock = DockStyle.Fill;
+            pwdText.Location = new Point(178, 116);
+            pwdText.Name = "pwdText";
+            pwdText.Size = new Size(158, 23);
+            pwdText.TabIndex = 22;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(33, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(139, 63);
-            this.label1.TabIndex = 19;
-            this.label1.Text = "Логин";
+            label1.AutoSize = true;
+            label1.Dock = DockStyle.Fill;
+            label1.Location = new Point(33, 50);
+            label1.Name = "label1";
+            label1.Size = new Size(139, 63);
+            label1.TabIndex = 19;
+            label1.Text = "Логин";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(33, 113);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 63);
-            this.label2.TabIndex = 20;
-            this.label2.Text = "Пароль";
+            label2.AutoSize = true;
+            label2.Dock = DockStyle.Fill;
+            label2.Location = new Point(33, 113);
+            label2.Name = "label2";
+            label2.Size = new Size(139, 63);
+            label2.TabIndex = 20;
+            label2.Text = "Пароль";
             // 
             // loginText
             // 
-            this.loginText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.loginText.Location = new System.Drawing.Point(178, 53);
-            this.loginText.Name = "loginText";
-            this.loginText.Size = new System.Drawing.Size(158, 23);
-            this.loginText.TabIndex = 21;
+            loginText.Dock = DockStyle.Fill;
+            loginText.Location = new Point(178, 53);
+            loginText.Name = "loginText";
+            loginText.Size = new Size(158, 23);
+            loginText.TabIndex = 21;
             // 
             // proceedButton
             // 
-            this.proceedButton.Location = new System.Drawing.Point(178, 242);
-            this.proceedButton.Name = "proceedButton";
-            this.proceedButton.Size = new System.Drawing.Size(75, 23);
-            this.proceedButton.TabIndex = 18;
-            this.proceedButton.Text = "Далее";
-            this.proceedButton.UseVisualStyleBackColor = true;
-            this.proceedButton.Click += new System.EventHandler(this.proceedButton_Click);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(33, 176);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(139, 63);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "label3";
+            proceedButton.Location = new Point(178, 242);
+            proceedButton.Name = "proceedButton";
+            proceedButton.Size = new Size(75, 23);
+            proceedButton.TabIndex = 18;
+            proceedButton.Text = "Далее";
+            proceedButton.UseVisualStyleBackColor = true;
+            proceedButton.Click += proceedButton_Click;
             // 
             // admCheck
             // 
-            this.admCheck.AutoSize = true;
-            this.admCheck.Location = new System.Drawing.Point(178, 179);
-            this.admCheck.Name = "admCheck";
-            this.admCheck.Size = new System.Drawing.Size(118, 19);
-            this.admCheck.TabIndex = 24;
-            this.admCheck.Text = "Администратор?";
-            this.admCheck.UseVisualStyleBackColor = true;
+            admCheck.AutoSize = true;
+            admCheck.Location = new Point(178, 179);
+            admCheck.Name = "admCheck";
+            admCheck.Size = new Size(118, 19);
+            admCheck.TabIndex = 24;
+            admCheck.Text = "Администратор?";
+            admCheck.UseVisualStyleBackColor = true;
             // 
             // AppUserForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 333);
-            this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "AppUserForm";
-            this.Text = "AppUserForm";
-            this.Load += new System.EventHandler(this.AppUserForm_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(369, 333);
+            Controls.Add(tableLayoutPanel1);
+            Name = "AppUserForm";
+            Text = "AppUserForm";
+            Load += AppUserForm_Load;
+            tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel1.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion
@@ -152,7 +139,6 @@
         private Label label1;
         private Label label2;
         private TextBox loginText;
-        private Label label3;
         private CheckBox admCheck;
     }
 }
